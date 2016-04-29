@@ -71,7 +71,7 @@ html,body,ul,li{
        var iw=lis[0].offsetWidth;
        var movex=0;
        var i=0;
-         
+        ul.addEventListener(mousedown,down);
          function down(e){
          	e.preventDefault();
          	ul.style.transition=null;
@@ -81,7 +81,7 @@ html,body,ul,li{
          	// console.log(dx)
          	var lenx=0;
          	var mx=0;
-         	
+         	document.addEventListener(mousemove,move);
          	function move(e){
          		e=istouch?e.changedTouches[0]:e;
          		mx=e.clientX;
@@ -91,10 +91,10 @@ html,body,ul,li{
          		var etime=0;
          		// console.log(mx);
          		lenx=mx-dx;
-         		ul.style.transform="translateX("+(movex+lenx)+"px)";
+         		ul.style.transform="translate3d("+(movex+lenx)+"px,0,0)";
          	};
-         	document.addEventListener(mousemove,move)
-                
+         	
+             document.addEventListener(mouseup,up);   
                 function up(e){
          			var etime=e.timeStamp;
          			var T=etime-stime;
@@ -120,21 +120,21 @@ html,body,ul,li{
 	                        	}
 	         			   movex=-i*iw;
 	         			   ul.style.transition="transform 1s"
-	                       ul.style.transform="translateX("+movex+"px)";
+	                       ul.style.transform="translate3d("+movex+"px,0,0)";
 	         			}else{
 	                       ul.style.transition="transform 1s"
-	                       ul.style.transform="translateX("+movex+"px)";
+	                       ul.style.transform="translate3d("+movex+"px,0,0)";
 	         				}
          			}
          			document.removeEventListener(mousemove,move)
          			document.removeEventListener(mouseup,up)
          			
          		};
-         		document.addEventListener(mouseup,up);
+         		
          		
 			
          };
-         ul.addEventListener(mousedown,down);
+         
         
        // console.log(iw)
 	}
